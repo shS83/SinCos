@@ -5,6 +5,14 @@ Rectangle {
     color: "black"
     property int stage: 0
     property real elapsed: 0
+    property date currentTime: new Date()
+
+    Timer {
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: root.currentTime = new Date()
+    }
 
     readonly property int edgeCount: 250
     readonly property string edgeChar: "|"
@@ -29,6 +37,11 @@ Rectangle {
         source: "fonts/JBSemibold.ttf"
     }
 
+    FontLoader {
+        id: clockFont
+        source: "fonts/FiraCode-Light.ttf"
+    }
+
     Image {
         anchors.centerIn: parent
         width: 232
@@ -40,6 +53,31 @@ Rectangle {
         scale: 0.75 + 0.25 * Math.cos(2 * Math.PI * root.elapsed / root.centerPulsePeriod)
         // Qt and pygame use opposite rotation directions.
         rotation: -(root.elapsed * root.centerSpinSpeed) % 360
+    }
+
+    Column {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 40
+        spacing: 6
+
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: Qt.formatTime(root.currentTime, "HH:mm:ss")
+            font.family: clockFont.name
+            font.weight: Font.Light
+            font.pixelSize: 36
+            color: "#a0ffff"
+        }
+
+        Text {
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: Qt.formatDate(root.currentTime, "dd.MM.yyyy")
+            font.family: clockFont.name
+            font.weight: Font.Light
+            font.pixelSize: 22
+            color: "#a0ffff"
+        }
     }
 
     Repeater {
