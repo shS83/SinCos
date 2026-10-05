@@ -1,0 +1,9 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Id": "org.sincos.arch",
+        "Name": "SinCos Arch",
+        "Description": "Animated Arch logo with a living rainbow orbit",
+        "Version": "1.0"
+    }
+}
