@@ -58,7 +58,7 @@ def main():
         center_image = pg.image.load(
             str(Path(__file__).with_name("arch.png"))
         ).convert_alpha()
-        center_image = pg.transform.smoothscale(center_image, (128, 128))
+        center_image = pg.transform.smoothscale(center_image, (232, 232))
         font = pg.font.Font(str(Path(__file__).with_name("JBSemibold.ttf")), 64)
         elapsed = 0.0
         running = True

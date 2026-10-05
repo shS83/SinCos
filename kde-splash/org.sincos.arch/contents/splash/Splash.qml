@@ -31,8 +31,8 @@ Rectangle {
 
     Image {
         anchors.centerIn: parent
-        width: 128
-        height: 128
+        width: 232
+        height: 232
         source: "images/arch.png"
         fillMode: Image.Stretch
         smooth: true
