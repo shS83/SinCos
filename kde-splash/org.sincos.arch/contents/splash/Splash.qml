@@ -67,7 +67,7 @@ Rectangle {
             font.family: clockFont.name
             font.weight: Font.Light
             font.pixelSize: 36
-            color: "#a0ffff"
+            color: "#ffffff"
         }
 
         Text {

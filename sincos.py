@@ -13,7 +13,7 @@ CENTER_COLOR = (160, 255, 255)
 CENTER_PULSE_PERIOD = 8  # Seconds for a full grow-and-shrink cycle.
 EDGE_SPIN_SPEED = 180
 RAINBOW_SPEED = 120  # Hue degrees per second.
-CLOCK_COLOR = (160, 255, 255)
+CLOCK_COLOR = (255, 255, 255)
 
 
 def draw_rotating_char(surface, font, char, position, angle, color, scale=1):
