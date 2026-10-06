@@ -3,10 +3,9 @@ from datetime import datetime
 from pathlib import Path
 import pygame as pg
 
-
 CENTER_CHAR = ""
-EDGE_CHAR = "|"
-EDGE_COUNT = 250
+EDGE_CHAR = "S"
+EDGE_COUNT = 225
 ORBIT_RADIUS = 200  # Distance between the center and each edge character's center.
 ORBIT_SPEED = 30  # Degrees per second.
 CENTER_SPIN_SPEED = 0
@@ -26,10 +25,10 @@ def draw_rotating_char(surface, font, char, position, angle, color, scale=1):
 def draw_rainbow_circle(surface, font, elapsed, center_image):
     center = surface.get_rect().center
     # center_scale = 1.5 - 0.5 * math.cos(math.tau * elapsed / CENTER_PULSE_PERIOD)
-    center_scale = 0.75 + 0.25 * math.cos(
-        math.tau * elapsed / CENTER_PULSE_PERIOD
+    center_scale = 0.75 + 0.25 * math.cos(math.tau * elapsed / CENTER_PULSE_PERIOD)
+    rotated = pg.transform.rotozoom(
+        center_image, elapsed * CENTER_SPIN_SPEED % 360, center_scale
     )
-    rotated = pg.transform.rotozoom(center_image, elapsed * CENTER_SPIN_SPEED % 360, center_scale)
     surface.blit(rotated, rotated.get_rect(center=center))
     # draw_rotating_char(
     #     surface, font, CENTER_CHAR, center,
@@ -46,8 +45,12 @@ def draw_rainbow_circle(surface, font, elapsed, center_image):
         color = pg.Color(0, 0, 0)
         color.hsva = ((phase * 360 + elapsed * RAINBOW_SPEED) % 360, 100, 100, 100)
         draw_rotating_char(
-            surface, font, EDGE_CHAR, position,
-            (phase * 360 + elapsed * EDGE_SPIN_SPEED) % 360, color,
+            surface,
+            font,
+            EDGE_CHAR,
+            position,
+            (phase * 360 + elapsed * EDGE_SPIN_SPEED) % 360,
+            color,
         )
 
 
@@ -55,7 +58,9 @@ def draw_clock(surface, time_font, date_font):
     now = datetime.now()
     time_text = time_font.render(now.strftime("%H:%M:%S"), True, CLOCK_COLOR)
     date_text = date_font.render(now.strftime("%d.%m.%Y"), True, CLOCK_COLOR)
-    date_rect = date_text.get_rect(midbottom=(surface.get_width() // 2, surface.get_height() - 40))
+    date_rect = date_text.get_rect(
+        midbottom=(surface.get_width() // 2, surface.get_height() - 40)
+    )
     time_rect = time_text.get_rect(midbottom=(date_rect.centerx, date_rect.top - 6))
     surface.blit(time_text, time_rect)
     surface.blit(date_text, date_rect)

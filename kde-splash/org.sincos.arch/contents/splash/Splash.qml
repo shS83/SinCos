@@ -14,8 +14,8 @@ Rectangle {
         onTriggered: root.currentTime = new Date()
     }
 
-    readonly property int edgeCount: 250
-    readonly property string edgeChar: "|"
+    readonly property int edgeCount: 225
+    readonly property string edgeChar: "S"
     readonly property real orbitRadius: 200
     readonly property real orbitSpeed: 30
     readonly property real centerSpinSpeed: 0
