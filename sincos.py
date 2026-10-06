@@ -8,7 +8,8 @@ EDGE_CHAR = "S"
 EDGE_COUNT = 225
 ORBIT_RADIUS = 200  # Distance between the center and each edge character's center.
 ORBIT_SPEED = 30  # Degrees per second.
-CENTER_SPIN_SPEED = 0
+CENTER_SWING_ANGLE = 20  # Maximum tilt in degrees to either side.
+CENTER_SWING_PERIOD = 4  # Seconds for a full left-and-right cycle.
 CENTER_COLOR = (160, 255, 255)
 CENTER_PULSE_PERIOD = 8  # Seconds for a full grow-and-shrink cycle.
 EDGE_SPIN_SPEED = 180
@@ -26,13 +27,12 @@ def draw_rainbow_circle(surface, font, elapsed, center_image):
     center = surface.get_rect().center
     # center_scale = 1.5 - 0.5 * math.cos(math.tau * elapsed / CENTER_PULSE_PERIOD)
     center_scale = 0.75 + 0.25 * math.cos(math.tau * elapsed / CENTER_PULSE_PERIOD)
-    rotated = pg.transform.rotozoom(
-        center_image, elapsed * CENTER_SPIN_SPEED % 360, center_scale
-    )
+    center_angle = CENTER_SWING_ANGLE * math.sin(math.tau * elapsed / CENTER_SWING_PERIOD)
+    rotated = pg.transform.rotozoom(center_image, center_angle, center_scale)
     surface.blit(rotated, rotated.get_rect(center=center))
     # draw_rotating_char(
     #     surface, font, CENTER_CHAR, center,
-    #     elapsed * CENTER_SPIN_SPEED % 360, CENTER_COLOR, center_scale,
+    #     center_angle, CENTER_COLOR, center_scale,
     # )
 
     for i in range(EDGE_COUNT):

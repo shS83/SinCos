@@ -18,7 +18,8 @@ Rectangle {
     readonly property string edgeChar: "S"
     readonly property real orbitRadius: 200
     readonly property real orbitSpeed: 30
-    readonly property real centerSpinSpeed: 0
+    readonly property real centerSwingAngle: 20
+    readonly property real centerSwingPeriod: 4
     readonly property real centerPulsePeriod: 8
     readonly property real edgeSpinSpeed: 180
     readonly property real rainbowSpeed: 120
@@ -52,7 +53,7 @@ Rectangle {
         mipmap: true
         scale: 0.75 + 0.25 * Math.cos(2 * Math.PI * root.elapsed / root.centerPulsePeriod)
         // Qt and pygame use opposite rotation directions.
-        rotation: -(root.elapsed * root.centerSpinSpeed) % 360
+        rotation: -root.centerSwingAngle * Math.sin(2 * Math.PI * root.elapsed / root.centerSwingPeriod)
     }
 
     Column {

@@ -17,7 +17,7 @@ ksplashqml --test --window org.sincos.arch
 
 Valitse Järjestelmäasetuksista Aloitusruutu / Splash Screen ja teemaksi SinCos Arch. Käytä asetusten hakua löytääksesi sivun. Tämä ruutu näkyy kirjautumisen jälkeen Plasman käynnistyessä.
 
-Muokkaa asennetun teeman contents/splash/Splash.qml-tiedoston vakioita. centerSpinSpeed on nyt 0; esimerkiksi 90 pyörittää keskikuvaa 90 astetta sekunnissa. centerPulsePeriod määrittää koko kutistumis- ja kasvusyklin sekunteina.
+Muokkaa asennetun teeman contents/splash/Splash.qml-tiedoston vakioita. centerSwingAngle määrittää keinunnan enimmäiskallistuksen kumpaankin suuntaan (nyt 20 astetta). centerSwingPeriod määrittää koko vasemmalle–oikealle-keinunnan keston (nyt 4 sekuntia). Sinikäyrä hidastaa liikkeen pehmeästi ääriasennoissa. centerPulsePeriod määrittää koko kutistumis- ja kasvusyklin sekunteina.
 
 Kuvan voi vaihtaa tiedostosta contents/splash/images/arch.png.
 
