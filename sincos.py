@@ -25,15 +25,15 @@ def draw_rotating_char(surface, font, char, position, angle, color, scale=1):
 
 def draw_rainbow_circle(surface, font, elapsed, center_image):
     center = surface.get_rect().center
+    # start off small; then scale up
     # center_scale = 1.5 - 0.5 * math.cos(math.tau * elapsed / CENTER_PULSE_PERIOD)
+    # start off big; then scale down
     center_scale = 0.75 + 0.25 * math.cos(math.tau * elapsed / CENTER_PULSE_PERIOD)
-    center_angle = CENTER_SWING_ANGLE * math.sin(math.tau * elapsed / CENTER_SWING_PERIOD)
+    center_angle = CENTER_SWING_ANGLE * math.sin(
+        math.tau * elapsed / CENTER_SWING_PERIOD
+    )
     rotated = pg.transform.rotozoom(center_image, center_angle, center_scale)
     surface.blit(rotated, rotated.get_rect(center=center))
-    # draw_rotating_char(
-    #     surface, font, CENTER_CHAR, center,
-    #     center_angle, CENTER_COLOR, center_scale,
-    # )
 
     for i in range(EDGE_COUNT):
         phase = i / EDGE_COUNT
