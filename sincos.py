@@ -69,7 +69,7 @@ def draw_clock(surface, time_font, date_font):
 def main():
     pg.init()
     try:
-        screen = pg.display.set_mode((1280, 720))
+        screen = pg.display.set_mode((1920, 1080), pg.FULLSCREEN)
         pg.display.set_caption("SinCos – Rainbow Circle")
         clock = pg.time.Clock()
         center_image = pg.image.load(
